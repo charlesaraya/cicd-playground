@@ -34,7 +34,7 @@ func TestGetAPIKey(t *testing.T) {
 	t.Run("fail malformed authorization header with no Key", func(t *testing.T) {
 		gotHeader.Set("Authorization", "ApiKey")
 		_, err := GetAPIKey(gotHeader)
-		if errors.Is(err, ErrMalformedAuthHeader) {
+		if !errors.Is(err, ErrMalformedAuthHeader) {
 			t.Errorf("expected %s, got %s", ErrMalformedAuthHeader.Error(), err.Error())
 		}
 	})
