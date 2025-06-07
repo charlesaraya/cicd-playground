@@ -25,6 +25,3 @@ jobs:
 
       - name: Build
         run: ./scripts/buildprod.sh
-
-
-
