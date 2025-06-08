@@ -25,3 +25,23 @@ jobs:
 
       - name: Build
         run: ./scripts/buildprod.sh
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker europe-southwest1-docker.pkg.dev
+
+      - name: 'Build image'
+        run: docker build -t europe-southwest1-docker.pkg.dev/notely-462309/notely-ar-repo/notely:latest .
+
+      - name: 'Push image'
+        run: docker push europe-southwest1-docker.pkg.dev/notely-462309/notely-ar-repo/notely:latest
