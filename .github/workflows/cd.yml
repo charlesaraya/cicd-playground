@@ -41,4 +41,4 @@ jobs:
         run: gcloud auth configure-docker europe-southwest1-docker.pkg.dev
 
       - name: 'Build Submit image'
-        run: gcloud builds submit - europe-southwest1-docker.pkg.dev/notely-462309/notely-ar-repo/notely:latest .
+        run: gcloud builds submit -t europe-southwest1-docker.pkg.dev/notely-462309/notely-ar-repo/notely:latest
